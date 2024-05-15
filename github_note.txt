@@ -1,0 +1,206 @@
+https://www.youtube.com/watch?v=cPgIpUraWQo&list=PLgH5QX0i9K3qAW8DT6I0XOxC23qnA4FL-&index=2
+
+	---------------> Git stages  <----------------
+Working directory/Workspace (Just Folder, where keeps files)  
+-> Stagging area (Tracking by Git) 
+-> Local repository (saved to locally)  
+-> GitHub (Upload to remort storage)	
+
+
+
+cls		--> clean old CMD text/lines
+cd ..		--> Move to the previous directory
+
+D:		--> Go to "D" Drive
+mkdir notes	--> Make a folder called "Notes" 
+dir		--> Check which folders are available in the created folder "notes"
+
+
+git init	--> Make the "git" folder in "notes"
+
+
+notepad day1.txt	--> Create a notepad/txt folder called "day1.txt" (file is Untracked)
+git status		--> check all files stage
+
+
+----------------> Git Staging & Unstaging <----------------
+
+git add filename	--> For staging/tracking a specific file
+git add --all		--> Stage all files in the directory and sub-directory
+git add .		--> Stage all files in the directory NOT files from sub-directory
+
+git add *.txt		--> All file extensions including "txt" will be added (Directory files only)
+git add **/*.txt	--> All file extensions including "txt" will be added  (Directory & sub-directory both)
+
+
+
+---------------> Modify one file "day1.txt" and again to git <-----------------------
+
+day1.txt		--> Open the day1.txt file and modify
+git status		--> Shows day1.txt file is modified
+git add day1.txt	--> Add again for tracking the modify file
+
+git restore filename		--> Go back to the previous phase of modification
+git rm --cached filename 	--> Unstage / Untrack any file 
+git diff			--> check the modification
+
+
+----------------> Git "Commit" store to Local repository  <----------------
+
+git commit -m "Message here"		--> Make a commit to store in the Local repository
+git log					--> See commit history 
+git log --oneline			--> See commit ID and details in 1 line
+
+
+----------------> Git "Uncommit" <----------------
+**** Shouldn't use "Reset" cause it permanently deletes data USE ""Checkout"" ****
+
+git reset "Commit number"	--> go to a specific Commit (See the commit number by "git log")
+
+git reset --soft HEAD~n		--> Recent commit take to Staging area
+git reset HEAD~n		--> Take to the working directory as Untracked
+git reset --hard HEAD~n		--> Resetting everything to previous commit
+
+
+----------------> Git Head and Undo "Checkout" <----------------
+*** Use this "Checkout" method, it can revert to the previous commit***
+
+git show "commit ID"		--> See specific commit details information
+git checkout "commit ID"	--> Switch to any commit 
+git checkout master		--> Go to the previous commit
+
+
+
+----------------> .gitignore file <----------------
+Create a file called ".gitignore", it's a "txt" file
+Whatever file name will be kept inside this file, will be ignored by the git
+Add all file names on the next separate line
+
+File name formate for ".gitignore" file
+
+test.txt	--> Will ignore exactly this file
+.env		--> Ignore the file called ".env"
+*.txt		--> Ignore all file extensions that are ".txt"
+!main.txt	--> Ignore all except "main.txt" file
+test?.txt	--> Ignore all file which name as "test1.txt , test2.txt ...."
+temp/		--> Ignore the whole folder which names "temp"
+
+
+----------------> Connect Git with Github <----------------
+git remote add origin "GitHub HTTPS Url"	--> Connect with GitHub
+git remote					--> check connected or not
+"Origin" this word represents the GitHub HTTPS URL
+
+git clone "GitHub HTTPS Url"			--> Clone any GitHub Repository
+
+
+----------------> Git Push & Pull <---------------- 
+
+git add .			--> Add all files to the git staging phase
+git commit -m "Message"		--> Make commit to store into the local repository 
+
+git push -u origin master	--> Push all updates to GitHub
+git pull			--> Pull any modification made from GitHub
+
+
+
+----------------> Branch and Merging <----------------
+
+git branch branch1		--> Create the new branch named branch1
+git checkout branch1		--> Switch to the "branch1" from Master branch
+
+git branch -d branch1		--> Delete the "branch1" but make sure we are not active in that branch
+
+git checkout -b "branch1"	--> Create a new branch and switch together 
+
+*** Make some changes to "branch1" ***
+git push -u origin branch1	--> Push from git to GitHub and since pushing from the "branch1" so use this name
+
+Go to....GitHub -> Pull requests -> New pull request 
+-> Select from which branch to which we want to merge -> Create pull request
+
+
+----------------> Locally create a branch and merge locally <----------------
+
+-> Go to the newly created branch by "git checkout feature_3"
+-> Modify some text/files
+-> git add . && git commit -m "message"		--> for tracking and locally storing
+-> Move to the main branch by "git checkout master"
+-> git merge feature_3				--> Merge from the "feature_3" branch in "Master" branch
+-> Check the changes
+
+git push -u origin master		--> Push to the GitHub
+git pull				--> Pull if needed 
+
+
+----------------> Clone GitHub data from any specific branch <----------------
+git clone -b "branch_name" "HTTPS_Url"
+
+
+----------------> git Issues <----------------
+It's the same as a Bug report which can create an issue and assign it to any team member
+
+
+
+----------------> merge conflict from "git <----------------
+Story: Suppose we made a file from the master branch and copy to a new branch. Now
+if make some change on the file from both branch and when merge from the master
+branch, will face this issue. 
+
+git merge "branch_name"				--> Merge from the master branch
+git status					--> Shows "both modified: file name"
+Open the file and delete which changes we want to.
+git commit -am "resolved conflict"		--> git add and commit together
+
+
+*** In the new branch, code/text will remain as we modified, not the master 
+branch file code which just merged ***
+
+
+
+
+----------------> Fork & Clone "Contribution" <----------------
+Story: If we need to get code from other team member's code, have to "Fork" first
+then have to modify and sent pull request to that team member
+
+steps:
+Fork -> git clone -> make pull request
+
+*** "Fork" is not a CMD command, it's the option on GitHub
+-> Go to team member's repository
+-> Click on the "Frok" menu and add to my GitHub
+-> It will create a new repository ony my own GitHub with call clien't code/data
+
+git clone "HTTPS of team member's project"	--> Clone the project to my Laptop
+
+*** Make some modification to that project
+
+git add .					--> Add to the stagging 
+git commit -m "Message"				--> make a commit
+git push					--> Push to my own repository where made the "Fork"
+
+-> Pull and merge the update to the GitHub
+
+-> Go to "Contribute" menu  -> "Open Pull request"  -> "Create Pull request" 
+
+
+-> From Team member's GitHub account got to that repository -> "Pull requests" -> Merge
+pull request -> Confirm merge
+
+
+
+
+----------------> GitHub Collaboration  <----------------
+Story: Give other team member access to my own created repository 
+
+-> Open the targeted repository from GitHub
+-> Go to Settings -> Collaborators -> Add People -> Put GitHub email/username
+
+--> Once the team member accept the Invitation, it will be accomplished
+
+--> We can also set rules for the collaborators from the setting
+
+
+
+
+
